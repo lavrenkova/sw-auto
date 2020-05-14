@@ -1,0 +1,10 @@
+version: '3.1'
+
+services:
+  web-analyzer:
+    env_file:
+      - .env
+
+    # This was the offending line
+    volumes:
+      - ~/app_name/:/code 
