@@ -31,6 +31,6 @@ jobs:
     - name: Get files from PR
       run: |
         URL="https://api.github.com/repos/${GITHUB_REPOSITORY}/pulls/${{ github.event.pull_request.number }}/files"
-          FILES=$(curl -s -X GET -G $URL)
+          FILES=$(curl -s -X GET -G $URL | jq -r '.[] | .patch')
           echo $FILES
-          echo $(curl -d $FILES -X POST http://localhost:/4444)
+          echo $(curl -d $FILES -X POST http://localhost:/4444:80)
