@@ -28,8 +28,9 @@ jobs:
       run: docker-compose -f SciencePaperAnalyzer/docker-compose.yml -f SciencePaperAnalyzer/docker-compose.ci.yml up -d
     - name: Check running containers
       run: docker ps -a
-    - name: Get file from PR
+    - name: Get files from PR
       run: |
         URL="https://api.github.com/repos/${GITHUB_REPOSITORY}/pulls/${{ github.event.pull_request.number }}/files"
           FILES=$(curl -s -X GET -G $URL)
           echo $FILES
+          echo $(curl -d $FILES POST http://localhost:/4444
