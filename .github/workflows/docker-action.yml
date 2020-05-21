@@ -33,4 +33,4 @@ jobs:
         URL="https://api.github.com/repos/${GITHUB_REPOSITORY}/pulls/${{ github.event.pull_request.number }}/files"
           FILES=$(curl -s -X GET -G $URL)
           echo $FILES
-          echo $(curl -d $FILES POST http://localhost:/4444
+          echo $(curl -d $FILES POST http://localhost:/4444)
