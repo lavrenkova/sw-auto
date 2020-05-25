@@ -33,5 +33,5 @@ jobs:
         URL="https://api.github.com/repos/${GITHUB_REPOSITORY}/pulls/${{ github.event.pull_request.number }}/files"
           FILES=$(curl -s -X GET -G $URL | jq -r '.[] | .patch')
           echo $FILES
-          POST_DATA=$(curl -F "@/$FILES" localhost:4444)
+          POST_DATA=$(curl -X "@/$FILES" -d localhost:4444)
           echo $POST
