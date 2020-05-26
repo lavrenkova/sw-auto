@@ -29,10 +29,3 @@ jobs:
 
     - name: Check running containers
       run: docker ps -a
-    - name: Get files from PR
-      run: |
-        URL="https://api.github.com/repos/${GITHUB_REPOSITORY}/pulls/${{ github.event.pull_request.number }}/files"
-          FILES=$(curl -s -X GET -G $URL | jq -r '.[] | .patch')
-          echo $FILES
-          POST_DATA=$(curl -d "@FILES" -X http://localhost:4444)
-          echo $POST
